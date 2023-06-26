@@ -1,0 +1,123 @@
+{% extends "base_templates.html" %}
+{% block title %}Colegio San Miguel{% endblock %}
+{% block content %}
+    <style>
+        body {
+            align-items: left upper;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+        }
+        
+        .container {
+            align-items: left upper;
+            width: 1000px;
+            padding: 20px;
+            background-color: #222222;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+        
+        h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        
+        table {
+            align-items: left upper;
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        
+        table th,
+        table td {
+            align-items: left upper;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        table th {
+            align-items: left upper;
+            background-color: #555555;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #333333;
+        }
+        
+        table tr:hover {
+            background-color: #444444;
+        }
+        
+        p {
+            margin: 10px 0;
+        }
+        
+        .button1 {
+            padding: 10px;
+            background-color: #555555;
+            color: #ffffff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .button1:hover {
+            background-color: #666666;
+        }
+    </style>
+    
+    <div class="container">
+        <h1>Colegio San Miguel</h1>
+        <h2>Guardar asistencias</h2>
+        <hr/>
+        <h3>Estudiantes del curso: {{ curso_selecc.anio }}° Div:{{ curso_selecc.division }}</h3>
+        <table>
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Clase</th>
+                <th>Asistencia</th>
+                <th>Justificación</th>
+            </tr>
+            <form action="{{ url_for('guardar_asistencia') }}" method="post">
+                {% for estudiante in estudiantes %}
+                    <tr>
+                        <td>{{ estudiante.apellido }}</td>
+                        <td>{{ estudiante.nombre }}</td>
+                        <td>
+                            <select name="clase_{{ estudiante.id }}">
+                                <option value="1">Clase de Aula</option>
+                                <option value="2">Ed. Fisica</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="asistencia_{{ estudiante.id }}">
+                                <option value="s">Presente</option>
+                                <option value="n">Ausente</option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="justificacion_{{ estudiante.id }}"></td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="5"><input class="button1" type="submit" value="Guardar asistencias"></td>
+                </tr>
+            </form>
+        </table>
+    </div>
+{% endblock %}

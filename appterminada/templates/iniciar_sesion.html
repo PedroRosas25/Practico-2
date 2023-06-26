@@ -1,0 +1,104 @@
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: left upper;
+            min-height: 100vh;
+            background-color: #0f0202;
+            font-family: 'Avant Garde';
+        }
+        
+        .container {
+            width: 400px;
+            padding: 20px;
+            background-color: #1f0404;
+            color: #ecc5c5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            font-family: 'Avant Garde';
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+        
+        h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        form label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        input[type="radio"] {
+            margin-right: 5px;
+            background-color: #1f0404;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            border: none;
+            background-color: #1f0404;
+            text-align: center;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #5a0909;
+            color: #f1c0c0;
+            border:none;
+            border-radius: 15px;
+            border-width: 2px;
+            border-color:#f1c0c0;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #915f5f;
+        }
+        
+        .container input[name="correo"],
+        .container input[name="clave"] {
+            color: #f1c0c0;
+            border: none;
+            border-radius: 15px;
+            border-width: 2px;
+            border-color:#f1c0c0;
+            border-style:groove;
+        }
+        .container input[value="Iniciar Sesión"]{
+            color: #f1c0c0;
+            background-color: #704c4c;
+        }
+    </style>
+    <title>Colegio San Miguel</title>
+    <div class="container">
+        <h1>Colegio San Miguel</h1>
+        <h2>Iniciar sesión</h2>
+        <hr/>
+        <form action="{{ request.path }}" method="post">
+            <label for="padre">Padre
+                <input type="radio" id="padre" name="rol" value="Padre">
+            </label><br>
+            <label for="preceptor">Preceptor
+                <input type="radio" id="preceptor" name="rol" value="Preceptor">
+            </label><br>
+            <label for="correo">Correo Electrónico</label>
+            <input type="text" name="correo"><br>
+            <label for="clave">Contraseña</label>
+            <input type="password" name="clave">
+            <br><br>
+            <input type="submit" value="Iniciar Sesión">
+            <br><br>
+        </form>
+

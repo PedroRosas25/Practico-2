@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #EAE2D9; /* Tonos marrones o tierra */
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    width: 400px;
+    padding: 20px;
+    background-color: #C7BFB8; /* Tonos marrones o tierra */
+    color: #444444; /* Color de texto más oscuro */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-top: 0;
+    color: #704214; /* Tono marrón para el título h1 */
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #8C5C32; /* Tono marrón para el título h2 */
+  }
+  
+  form input[type="text"],
+  form input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #aaaaaa;
+    background-color: #DFD3C7; /* Tono marrón claro para los campos de entrada */
+    color: #3E362D; /* Color de texto más oscuro para los campos de entrada */
+  }
+  
+  form input[type="submit"] {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  form input[type="submit"]:hover {
+    background-color: #555555;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #aaaaaa;
+    margin: 20px 0;
+  }
+  

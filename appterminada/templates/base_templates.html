@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="/static/css/estilos.css">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            text-align: right upper;
+            background-color: #0f0202;
+            color: #ffffff;
+            font-family: 'Avant Garde';
+            margin: 0;
+            padding: 0;
+        }
+
+        .myDiv {
+            background-color: #0f0202;
+            color: #ffffff;
+            padding: 10px;
+            text-align: right upper;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .myDiv a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .myDiv a:hover {
+            color: #aaaaaa;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <div class="myDiv">
+        <br><br><a href="{{ url_for('index') }}">Inicio</a><br><br>
+        <br><br><a href="{{ url_for('iniciar_sesion') }}">Cerrar Sesion</a><br><br>
+    </div>
+</body>
+</html>

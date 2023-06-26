@@ -1,0 +1,138 @@
+{% extends "base_templates.html" %}
+{% block title %}Colegio San Miguel{% endblock %}
+{% block content %}
+    <style>
+        body {
+    align-items: left upper;       
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #330000;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+}
+
+.container {
+    align-items: left upper;
+    width: 1000px;
+    padding: 20px;
+    background-color: #441111;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+table {
+    align-items: left upper;
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    align-items: left upper;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    align-items: left upper;
+    background-color: #553333;
+}
+
+table tr:nth-child(even) {
+    align-items: left upper;
+    background-color: #443333;
+}
+
+table tr:hover {
+    align-items: left upper;
+    background-color: #554444;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.button1 {
+    padding: 10px;
+    background-color: #553333;
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.button1:hover {
+    background-color: #664444;
+}
+
+    </style>
+    
+    <div class="container">
+        <h1>Colegio San Miguel</h1>
+        <h2>Informe detallado</h2>
+        <hr/>
+        <form action="{{ request.path }}" method="post">
+            {% if cursos is not none :%}
+                <label for="cursos">Cursos</label><br>
+                <select id="cursos" name="curso" width="500px">
+                    {% for curso in cursos %}
+                        {% if curso.idpreceptor == preceptor.id %}
+                            <option value="{{ curso.id }}">{{ curso.anio }} {{ curso.division }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <br> <br>
+                <input class="button1" type="submit" value="Ir al curso">
+            {% else %}
+                {% if informe %}
+                    <h3>Informe detallado del curso: {{ curso_selecc.anio }} {{ curso_selecc.division }}</h3>
+                    <table>
+                        <tr>
+                            <th>Apellido</th>
+                            <th>Nombre</th>
+                            <th>Clases de aula presentes</th>
+                            <th>Clases de educación física presentes</th>
+                            <th>Clases de aula ausentes justificadas</th>
+                            <th>Clases de aula ausentes injustificadas</th>
+                            <th>Clases de educación fisica justificadas</th>
+                            <th>Clases de educación fisica injustificadas</th>
+                            <th>Cantidad total de inasistencias</th>
+                        </tr>
+                        {% for estudiante in informe %}
+                        <tr>
+                            <td>{{ estudiante.apellido }}</td>
+                            <td>{{ estudiante.nombre }}</td>
+                            <td>{{ estudiante.clases_aula_presentes }}</td>
+                            <td>{{ estudiante.clases_edu_fis_presentes }}</td>
+                            <td>{{ estudiante.clases_aula_aus_justificadas }}</td>
+                            <td>{{ estudiante.clases_aula_aus_injustificadas }}</td>
+                            <td>{{ estudiante.clases_edu_aus_justificadas }}</td>
+                            <td>{{ estudiante.clases_edu_aus_injustificadas }}</td>
+                            <td>{{ estudiante.total_de_inasistencias }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>No hay estudiantes en el curso seleccionado.</p>
+                {% endif %}
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}
