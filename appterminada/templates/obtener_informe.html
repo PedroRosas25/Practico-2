@@ -1,0 +1,178 @@
+{% extends "base_templates.html" %}
+{% block title %}Colegio San Miguel{% endblock %}
+{% block content %}
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #29223b;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #2a145a;
+            color: #ffffff;
+            width: 350px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container h1, .container h2, .container h3 {
+            color: #ffb2e8;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #f92aad;
+            text-align: center;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #ffd700;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ffffff;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #6c4f88;
+            color: #ffffff;
+        }
+
+        table {
+            width: 550;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #4d164d;
+            color: #ffffff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        p {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .button1 {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6c4f88;
+            color: #ffffff;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .button1:hover {
+            background-color: #f92aad;
+        }
+
+        .button1:active {
+            background-color: #ffd700;
+            color: #000000;
+        }
+    </style>
+    
+    <div class="container">
+        <h1>Colegio San Miguel</h1>
+        <h2>Informe detallado de las asistencias</h2>
+        <hr/>
+        <form action="{{ request.path }}" method="post">
+            {% if cursos is not none :%}
+                <label for="cursos">Cursos</label><br>
+                <select id="cursos" name="curso" width="500px">
+                    {% for curso in cursos %}
+                        {% if curso.idpreceptor == preceptor.id %}
+                            <option value="{{ curso.id }}">{{ curso.anio }} {{ curso.division }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <br> <br>
+                <input class="button1" type="submit" value="Ir al curso">
+            {% else %}
+                {% if informe %}
+                    <h3>Informe detallado del curso: {{ curso_selecc.anio }} {{ curso_selecc.division }}</h3>
+                    <table>
+                        {% for estudiante in informe %}
+                        <tr>
+                            <th>Apellido</th>
+                            <td>{{ estudiante.apellido }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td>{{ estudiante.nombre }}</td>
+                        </tr>
+                        <tr>
+                            <th>Clases de aula presentes</th>
+                            <td>{{ estudiante.clases_aula_presentes }}</td>
+                        </tr>
+                        <tr>
+                            <th>Clases de educación física presentes</th>
+                            <td>{{ estudiante.clases_edu_fis_presentes }}</td>
+                        </tr>
+                        <tr>
+                            <th>Clases de aula ausentes justificadas</th>
+                            <td>{{ estudiante.clases_aula_aus_justificadas }}</td>
+                        </tr>
+                        <tr>
+                            <th>Clases de aula ausentes injustificadas</th>
+                            <td>{{ estudiante.clases_aula_aus_injustificadas }}</td>
+                        </tr>
+                        <tr>
+                            <th>Clases de educación física justificadas</th>
+                            <td>{{ estudiante.clases_edu_aus_justificadas }}</td>
+                        </tr>
+                        <tr>
+                            <th>Clases de educación física injustificadas</th>
+                            <td>{{ estudiante.clases_edu_aus_injustificadas }}</td>
+                        </tr>
+                        <tr>
+                            <th>Cantidad total de inasistencias</th>
+                            <td>{{ estudiante.total_de_inasistencias }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>No hay estudiantes en el curso seleccionado.</p>
+                {% endif %}
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

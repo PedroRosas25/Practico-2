@@ -1,0 +1,106 @@
+
+    <style>
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  background-color: #29223b;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  
+}
+
+h1 {
+  font-size: 36px;
+  color: #f92aad;
+  text-align: center;
+  margin: 0;
+}
+
+h2 {
+  font-size: 24px;
+  color: #ffd700;
+  text-align: center;
+  margin-top: 10px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ffffff;
+  margin-top: 20px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #6c4f88;
+  color: #ffffff;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+input[type="submit"] {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #6c4f88;
+  color: #ffffff;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #f92aad;
+}
+
+input[type="submit"]:active {
+  background-color: #ffd700;
+  color: #000000;
+}
+
+    </style>
+    <title>Colegio San Miguel</title>
+    <div class="container">
+        <h1>Colegio San Miguel</h1>
+        <h2>Iniciar sesión</h2>
+        <hr/>
+        <form action="{{ request.path }}" method="post">
+            <label for="padre">Padre
+                <input type="radio" id="padre" name="rol" value="Padre">
+            </label><br>
+            <label for="preceptor">Preceptor
+                <input type="radio" id="preceptor" name="rol" value="Preceptor">
+            </label><br>
+            <label for="correo">Correo Electrónico</label>
+            <input type="text" name="correo"><br>
+            <label for="clave">Contraseña</label>
+            <input type="password" name="clave">
+            <br><br>
+            <input type="submit" value="Iniciar Sesión">
+            <br><br>
+        </form>
+

@@ -1,0 +1,107 @@
+{% extends "base_templates.html" %}
+{% block title %}Colegio San Miguel{% endblock %}
+{% block content %}
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #29223b;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #2a145a;
+            color: #ffffff;
+            width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container h1, .container h2, .container h3 {
+            color: #ffb2e8;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #f92aad;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #ffd700;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ffffff;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #6c4f88;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .button1 {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6c4f88;
+            color: #ffffff;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .button1:hover {
+            background-color: #f92aad;
+        }
+
+        .button1:active {
+            background-color: #ffd700;
+            color: #000000;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Colegio San Miguel</h1>
+        <h2>Registrar asistencias</h2>
+        <hr/>
+        <form action="{{ request_path }}" method="POST">
+            <label for="curso">Cursos</label><br>
+            <select id="curso" name="curso" width="500px">
+                {% for curso in cursos %}
+                    {% if curso.idpreceptor == preceptor.id %}
+                        <option value="{{ curso.id }}">{{ curso.anio }} {{ curso.division }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select><br>
+            <input type="submit" value="Confirmar"/><br>
+        </form>
+    </div>
+
+{% endblock %}

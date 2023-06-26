@@ -1,0 +1,137 @@
+
+ 
+<style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+      background-color: #29223b;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #ffffff;
+    }
+    
+    h1 {
+      font-size: 36px;
+      color: #f92aad;
+      text-align: center;
+      margin: 0;
+    }
+    
+    h2 {
+      font-size: 24px;
+      color: #ffd700;
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #6c4f88;
+      color: #ffffff;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #6c4f88;
+    }
+    
+    tr:nth-child(odd) {
+      background-color: #514166;
+    }
+    
+    select,
+    input[type="date"],
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #6c4f88;
+      color: #ffffff;
+    }
+    
+    input[type="submit"] {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #6c4f88;
+      color: #ffffff;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #f92aad;
+    }
+    
+    input[type="submit"]:active {
+      background-color: #ffd700;
+      color: #000000;
+    }
+    </style>
+    
+<title>Colegio San Miguel</title>
+<h1>Colegio San Miguel</h1>
+<h2>Registrar asistencias</h2>
+
+
+<form action="{{ request_path }}" method="POST" class="container">
+    <label for="clase">Tipo de clase</label><br>
+    <select id="clase" name="clase" width="500px">
+        <option value="1">Aula</option>
+        <option value="2">Educación Física</option>
+    </select><br>
+
+    <label for="fecha">Fecha de asistencia</label><br>
+    <input type="date" id="fecha" name="fecha"><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Asistencia</th>
+                <th>Justificación</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for estudiante in estudiantes %}
+                <tr>
+                    <td>{{ estudiante.nombre }}</td>
+                    <td>{{ estudiante.apellido }}</td>
+                    <td>
+                        <select name="asistio-{{ estudiante.id }}">
+                            <option value="s">Sí</option>
+                            <option value="n">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="justificacion-{{ estudiante.id }}" placeholder="Justificación">
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <input type="submit" value="Confirmar"/><br> 
+ </form>
+
+

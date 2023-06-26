@@ -1,0 +1,101 @@
+{% extends 'base_templates.html' %} 
+{% block title %} Colegio San Miguel {% endblock %} 
+{% block content %} 
+
+ 
+ <style>
+
+    body {
+  font-family: "Times New Roman", Times, serif;
+  background-color: #29223b;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #6c4f88;
+  padding: 20px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  color: #ffd700;
+  margin: 0;
+}
+
+section {
+  padding: 20px;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+nav ul li a:hover {
+  color: #f92aad;
+}
+
+h3 {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+footer {
+  background-color: #6c4f88;
+  padding: 10px;
+  text-align: center;
+}
+
+p {
+  font-size: 14px;
+  margin: 0;
+  color: #ffffff;
+}
+
+ </style>
+ <!DOCTYPE html>
+ <html>
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Colegio San Miguel</title>
+</head>
+<body>
+<header>
+ <h2>Colegio San Miguel</h2>
+</header>
+<section>
+ <nav>
+    <ul>
+        <li><a href="{{ url_for('registrar_asistencia') }}">Registrar Asistencias</a></li>
+        <li><a href="{{ url_for('obtener_informe') }}">Informe de las Asistencias</a></li>
+    </ul>
+ </nav> 
+
+</section>
+    <h3>Sistema PAE para el procesamiento de asistencias</h3>
+<footer>
+    <p></p>
+</footer>
+</body>
+</html>
+{% endblock %}
+

@@ -1,0 +1,144 @@
+
+    <style>
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  background-color: #29223b;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #ffffff;
+}
+
+h1 {
+  font-size: 36px;
+  color: #f92aad;
+  text-align: center;
+  margin: 0;
+}
+
+h2 {
+  font-size: 24px;
+  color: #ffd700;
+  text-align: center;
+  margin-top: 10px;
+}
+
+h3 {
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 20px;
+  text-align: center;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ffffff;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #6c4f88;
+  color: #ffffff;
+}
+
+table tr:nth-child(even) {
+  background-color: #4f3a5e;
+}
+
+table tr:hover {
+  background-color: #f92aad;
+  cursor: pointer;
+}
+
+select,
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #6c4f88;
+  color: #ffffff;
+}
+
+input[type="submit"] {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #6c4f88;
+  color: #ffffff;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #f92aad;
+}
+
+input[type="submit"]:active {
+  background-color: #ffd700;
+  color: #000000;
+}
+
+    </style>
+    <title>Colegio San Miguel</title>
+    <div class="container">
+        <h1>Colegio San Miguel</h1>
+        <h2>Guardar asistencias</h2>
+        <hr/>
+        <h3>Estudiantes del curso: {{ curso_selecc.anio }}° Div:{{ curso_selecc.division }}</h3>
+        <table>
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Clase</th>
+                <th>Asistencia</th>
+                <th>Justificación</th>
+            </tr>
+            <form action="{{ url_for('guardar_asistencia') }}" method="post">
+                {% for estudiante in estudiantes %}
+                    <tr>
+                        <td>{{ estudiante.apellido }}</td>
+                        <td>{{ estudiante.nombre }}</td>
+                        <td>
+                            <select name="clase_{{ estudiante.id }}">
+                                <option value="1">Clase de Aula</option>
+                                <option value="2">Ed. Fisica</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="asistencia_{{ estudiante.id }}">
+                                <option value="s">Presente</option>
+                                <option value="n">Ausente</option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="justificacion_{{ estudiante.id }}"></td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="5"><input class="button1" type="submit" value="Guardar asistencias"></td>
+                </tr>
+            </form>
+        </table>
+    </div>
+

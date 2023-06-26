@@ -1,0 +1,49 @@
+
+<h1> {{ error }}</h1>
+<div class="myDiv">
+  <br><br><a href="{{ url_for('iniciar_sesion') }}">Volver a log in</a><br><br>
+</div>
+
+<style>
+body {
+  font-family: "Times New Roman", Times, serif;
+  background-color: #29223b;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 36px;
+  color: #f92aad;
+  text-align: center;
+  margin: 0;
+  margin-top: 100px;
+}
+.myDiv {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.myDiv a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #6c4f88;
+  color: #ffffff;
+  border-radius: 20px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.myDiv a:hover {
+  background-color: #f92aad;
+}
+
+.myDiv a:active {
+  background-color: #ffd700;
+  color: #000000;
+}
+
+</style>
+
+
